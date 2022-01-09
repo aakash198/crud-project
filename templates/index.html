@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form action="" method="post">
+                {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput"  class="form-label">Enter name</label>
+                        <input name='nm' type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput2" class="form-label">Enter address</label>
+                        <input name='addr' type="text" class="form-control" id="formGroupExampleInput2" placeholder="Address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label">Enter mobile no</label>
+                        <input name='mbl' type="text" class="form-control" id="formGroupExampleInput" placeholder="Mobile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput2" class="form-label">Enter city</label>
+                        <input name='city' type="text" class="form-control" id="formGroupExampleInput2" placeholder="City">
+                    </div>
+                    <button type='submit' style="margin-left:200px;" class="btn btn-primary">ADD</button>
+                </form>
+            </div>
+                <div class="col-6">
+                    <table class='table table-hover'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Mobile</th>
+                                <th>City</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for i in kmn %}
+                            <tr>
+                                
+                                <td>{{i.name}}</td>
+                                <td>{{i.address}}</td>
+                                <td>{{i.city}}</td>
+                                <td>{{i.phone_no}}</td>
+                                <td><a class="btn btn-primary"href="{% url 'update_page' i.id %}"> Update</a></td>
+                                <td><a class="btn btn-primary"href="{% url 'delete_page' i.id %}"> Delete</a></td>
+                               
+                            </tr> 
+                            {% endfor %}
+                        </tbody>
+                        
+                    </table>
+                 </div>       
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+</body>
+</html>
